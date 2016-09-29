@@ -1,6 +1,5 @@
 'use strict';
 
-const request = require('./package.json');
 const apis    = require('./libs/apis');
 
 /**
