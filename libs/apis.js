@@ -21,9 +21,11 @@ const apis = {
             baseUrl : options.kong.host,
             uri     : '/apis/' + options.endpoint.name,
             auth    : {
-                user                : 'username',
-                pass                : 'password'
-            }
+                user                : options.kong.username,
+                pass                : options.kong.password,
+                sendImmediately     : false
+            },
+            json : true
         }, (err, res, body) => {
             if (err) {
                 callback(err);
@@ -61,9 +63,11 @@ const apis = {
             baseUrl : options.kong.host,
             uri     : '/apis',
             auth    : {
-                user                : 'username',
-                pass                : 'password'
+                user                : options.kong.username,
+                pass                : options.kong.password,
+                sendImmediately     : false
             },
+            json : true,
             body : {
                 name                : options.endpoint.name,
                 request_host        : options.endpoint.requestHost,
