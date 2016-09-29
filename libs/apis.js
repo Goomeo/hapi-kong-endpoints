@@ -34,7 +34,7 @@ const apis = {
             console.log(res.statusCode, res.body);
 
             callback(null, {
-                statusCode  : statusCode,
+                statusCode  : res.statusCode,
                 result      : body
             });
         });
@@ -74,7 +74,7 @@ const apis = {
                 preserve_host       : options.endpoint.preserveHost,
                 upstream_url        : options.endpoint.upstreamUrl
             }
-        }, (err, res) => {
+        }, (err, res, body) => {
             if (err) {
                 next(err);
                 return;
@@ -86,7 +86,7 @@ const apis = {
             }
 
             next(null, {
-                statusCode  : statusCode,
+                statusCode  : res.statusCode,
                 result      : body
             });
         });
