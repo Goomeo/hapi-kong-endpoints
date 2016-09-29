@@ -27,7 +27,7 @@ server.register({
 ## options
 
 | param | description | required |
-| -- | -- | -- |
+| --- | --- | --- |
 | kong | Kong connection informations | *x* |
 | kong.host | Admin API Server (E.g : http://kong:8001) | *x* |
 | kong.username | Admin API username | |
