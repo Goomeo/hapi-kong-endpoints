@@ -22,8 +22,7 @@ const apis = {
             uri     : '/apis/' + options.endpoint.name,
             auth    : {
                 user                : 'username',
-                pass                : 'password',
-                sendImmediately     : false
+                pass                : 'password'
             }
         }, (err, res, body) => {
             if (err) {
@@ -63,8 +62,7 @@ const apis = {
             uri     : '/apis',
             auth    : {
                 user                : 'username',
-                pass                : 'password',
-                sendImmediately     : false
+                pass                : 'password'
             },
             body : {
                 name                : options.endpoint.name,
