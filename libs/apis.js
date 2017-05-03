@@ -15,18 +15,23 @@ const apis = {
      * @param {string}      options.endpoint.name                           Entry Point Name. Must be an `[a-zA-Z0-9_\-]` String
      * @param {function}    callback                                        Callback
      */
-    get : function (options, callback) {
-        request({
+    get(options, callback) {
+        const requestOptions = {
             method  : 'GET',
             baseUrl : options.kong.host,
             uri     : '/apis/' + options.endpoint.name,
-            auth    : {
+            json    : true
+        };
+
+        if (options.kong.username && options.kong.password) {
+            requestOptions.auth = {
                 user                : options.kong.username,
                 pass                : options.kong.password,
                 sendImmediately     : false
-            },
-            json : true
-        }, (err, res, body) => {
+            };
+        }
+
+        request(requestOptions, (err, res, body) => {
             if (err) {
                 callback(err);
                 return;
@@ -57,18 +62,13 @@ const apis = {
      * @param {string}      options.endpoint.upstreamUrl                    The base target URL that points to your API server, this URL will be used for proxying requests. For example, `https://mockbin.com`
      * @param {function}    next                                            Callback
      */
-    post : function (options, next) {
-        request({
+    post(options, next) {
+        const requestOptions = {
             method  : 'POST',
             baseUrl : options.kong.host,
             uri     : '/apis',
-            auth    : {
-                user                : options.kong.username,
-                pass                : options.kong.password,
-                sendImmediately     : false
-            },
-            json : true,
-            body : {
+            json    : true,
+            body    : {
                 name                : options.endpoint.name,
                 request_host        : options.endpoint.requestHost,
                 request_path        : options.endpoint.requestPath,
@@ -76,7 +76,17 @@ const apis = {
                 preserve_host       : options.endpoint.preserveHost,
                 upstream_url        : options.endpoint.upstreamUrl
             }
-        }, (err, res, body) => {
+        };
+
+        if (options.kong.username && options.kong.password) {
+            requestOptions.auth = {
+                user                : options.kong.username,
+                pass                : options.kong.password,
+                sendImmediately     : false
+            };
+        }
+
+        request(requestOptions, (err, res, body) => {
             if (err) {
                 next(err);
                 return;
