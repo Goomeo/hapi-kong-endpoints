@@ -1,6 +1,6 @@
 {
   "name": "hapi-kong-endpoints",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Allow Hapi to register itself automatically on an Kong Server Endpoints",
   "main": "index.js",
   "scripts": {

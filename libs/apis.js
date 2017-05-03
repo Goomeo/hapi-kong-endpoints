@@ -37,8 +37,6 @@ const apis = {
                 return;
             }
 
-            console.log(res.statusCode, res.body);
-
             callback(null, {
                 statusCode  : res.statusCode,
                 result      : body
