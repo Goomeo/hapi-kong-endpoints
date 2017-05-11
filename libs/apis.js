@@ -69,8 +69,8 @@ const apis = {
             body    : {
                 name                : options.endpoint.name,
                 request_host        : options.endpoint.requestHost,
-                request_path        : options.endpoint.requestPath,
-                strip_request_path  : options.endpoint.stripRequestPath,
+                uris                : options.endpoint.requestPath,
+                strip_uri           : options.endpoint.stripRequestPath,
                 preserve_host       : options.endpoint.preserveHost,
                 upstream_url        : options.endpoint.upstreamUrl
             }
